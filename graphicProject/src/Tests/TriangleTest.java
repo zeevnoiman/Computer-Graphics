@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TriangleTest {
-
+//only to test the commit
 	@Test
 	public void TriangleIntersectionPointsTest(){
 		
