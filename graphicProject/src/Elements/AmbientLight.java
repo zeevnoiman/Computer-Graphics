@@ -5,6 +5,7 @@ import java.awt.Color;
 
 //import Primitives.Coordinate;
 
+//cool!!!! i think it works now !!!!
 
 //ambient light class for ambient light in a scene 
 public class AmbientLight extends Light{
