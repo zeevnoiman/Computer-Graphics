@@ -1,86 +1,43 @@
 package Elements;
-
 import java.awt.Color;
-//import Primitives.Point3D;
+import java.util.Map;
 
-//import Primitives.Coordinate;
-
-//cool!!!! i think it works now !!!!
-
-//ambient light class for ambient light in a scene 
-public class AmbientLight extends Light{
+public class AmbientLight extends Light	{
 	
-Color _color;
-private double _Ka = 0.1;
-
-//=================constructors as asked in the moodle 
-public AmbientLight() {
-			
-	this._color = new Color(255,255,255);
+	private final double _Ka = 0.1;
 	
-	this._Ka = 1.0;
-}
-
-public AmbientLight(Color color) {
+	// ***************** Constructors ********************** //
+	public AmbientLight(){
+		//_color = new Color(0); 	/////////
+		super();
+	}
+	public AmbientLight(AmbientLight aLight){
+		super(aLight._color);
+	}
+	public AmbientLight(int r, int g, int b){
+		_color = new Color(r, g, b);
+	}
+	public AmbientLight(Map<String, String> attributes){
+		// TODO
+	}
+	// ***************** Getters/Setters ********************** //
+	public Color getColor(){
 	
-	this._color = new Color(color.getRGB());
-	
-	this._Ka = 0.5;
-}
-
-public AmbientLight(Color color, double d) {
-	
-	this._color = new Color(color.getRGB());
-	
-	this._Ka = d;
-}
-public AmbientLight(AmbientLight aLight) {
-	
-	this._color = new Color(aLight.getColor().getRGB());
-	this._Ka=aLight._Ka;
-}
-
-public AmbientLight(int r,int g , int b) {
-	this._color = new Color(r,g,b);
-	this._Ka = 0.1;
-	
-}
-
-
-// get intensity function returns the color * a constent factor
-@Override
-public Color getIntensity(){
-	Color color = new Color((int)(_color.getRed()*_Ka),(int)(_color.getGreen()*_Ka),(int)(_color.getBlue()*_Ka));
-	
-	return color;
-	};
-	
-//getters and setters
-	
-public void setColor(Color color) {this._color = new Color(color.getRed(),color.getGreen(),color.getBlue());}
-
-public Color getColor(){return _color;}
-
-public void setKa(double ka){this._Ka = ka;}
-
-public double getKa(){return _Ka;}
-
-
-@Override
-public String toString() {
-	return "color is" + _color.getRGB()  + "Ka is: " + _Ka ;
+		return new Color(_color.getRGB());
+	}
+	public void setColor(Color color){
+		_color = new Color(color.getRGB());
+	}
+	public double getKa(){
+		return _Ka;
+	}
+	@Override
+	public Color getIntensity(){
+		
+		float r = (float) (_Ka * _color.getRed()) / 255;
+		float g = (float)(_Ka * _color.getGreen()) / 255;
+		float b = (float)(_Ka * _color.getBlue()) / 255;
+		return new Color(r,g,b);
 	}
 
-//compare function compares two lights
-public int compareTo(AmbientLight ambL)
-{
-	if (Math.abs((ambL.getColor().getRGB() - _color.getRGB())* (ambL.getKa() - _Ka )) <= 0.0001)
-	return 0;
-	else
-	return -1;
-};
-
-
-
-	
 }

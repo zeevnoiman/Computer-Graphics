@@ -10,14 +10,14 @@ import java.awt.Color;
 
 import org.junit.Test;
 
-public class rendererTest 
+public class RenderTest 
 {
 	 
     @Test
     public void basicRendering(){
          
     	Scene scene = new Scene(new AmbientLight(255,255,255), 
-				    			new Color(255,255,255), 
+				    			new Color(0.3f,0.5f,0.74f), 
 				    			new Camera(), 48);
          Sphere sphere = new Sphere(50, new Point3D(0.0, 0.0, -50));
         

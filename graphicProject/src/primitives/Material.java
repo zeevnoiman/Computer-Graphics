@@ -1,70 +1,59 @@
 package primitives;
 
-/**
- * Created by daniel on 4/6/2017.
- */
+
 public class Material {
-    private double kd; // Diffusion attenuation coefficient
-    private double ks; // Specular attenuation coefficient
-    private double kr; // Reflection coefficient (1 for mirror)
-    private double kt; // Refraction coefficient (1 for transparent)
-    private double n; // Refraction index
-    // ***************** Constructors ********************** //
-    public Material()
-    {
-        kd = 1;
-        ks = 1;
-        kr = 0;
-        kt = 0;
-        n = 1;
-    }
-    public Material(Material material)
-    {
-        kd = material.kd;
-        ks = material.ks;
-        kr = material.kr;
-        kt = material.kt;
-        n = material.n;
-    }
-    // ***************** Getters/Setters ********************** //
-    public double getKd()
-    {
-        return kd;
-    }
-    public double getKs()
-    {
-        return ks;
-    }
-    public double getKr()
-    {
-        return kr;
-    }
-    public double getKt()
-    {
-        return kt;
-    }
-    public double getN()
-    {
-        return n;
-    }
-    public void setKd(double _Kd)
-    {
-        kd = _Kd;
-    }
-    public void setKs(double _Ks)
-    {
-        ks = _Ks;
-    }
-    public void setKr(double _Kr)
-    {
-        kr = _Kr;
-    }
-    public void setKt(double _Kt)
-    {
-        kt = _Kt;
-    }
-    public void setN (double _n)
-    {
-        n = _n;
-    }
+	private double _Kd; // Diffusion attenuation coefficient
+	private double _Ks; // Specular attenuation coefficient
+	private double _Kr; // Reflection coefficient (1 for mirror)
+	private double _Kt; // Refraction coefficient (1 for transparent)
+	private double _n; // Refraction index
+	
+	// ***************** Constructors ********************** //
+	public Material()
+	{
+	_Kd = 1;
+	_Ks = 1;
+	_Kr = 0;
+	_Kt = 0;
+	_n = 1;
+	}
+	public Material(Material material){
+		_Kd = material._Kd;
+		_Ks = material._Ks;
+		_Kr = material._Kr;
+		_Kt = material._Kt;
+		_n = material._n;
+	}
+	
+	// ***************** Getters/Setters ********************** //
+	public double getKd(){
+		return _Kd;
+	}
+	public double getKs(){
+		return _Ks;
+	}
+	public double getKr(){
+		return _Kr;
+	}
+	public double getKt(){
+		return _Kt;
+	}
+	public double getN(){
+		return _n;
+	}
+	public void setKd(double Kd){
+		_Kd = Kd;
+	}
+	public void setKs(double Ks){
+		_Ks = Ks;
+	}
+	public void setKr(double Kr){
+		_Kr = Kr;
+	}
+	public void setKt(double Kt){
+		_Kt = Kt;
+	}
+	public void setN (double n){
+		_n = n;
+	}
 }

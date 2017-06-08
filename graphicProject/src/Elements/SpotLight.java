@@ -1,46 +1,31 @@
 package Elements;
 
-
-
+import primitives.*;
 import java.awt.Color;
 
-import primitives.*;
-
-//spot light is like a beam of light that has a direction and color etc.
-
-public class SpotLight extends PointLight{
-
+public class SpotLight extends PointLight {
 	private Vector _direction;
 	
-	//full cons
-	public SpotLight(Color color, Point3D position, Vector direction, double kc, double kl, double kq){
+	// ***************** Constructor ********************** //
+	public SpotLight(Color color, Point3D position, Vector direction,
+	double kc, double kl, double kq){
 		super(color, position, kc, kl, kq);
-		this._direction=new Vector(direction);
+		_direction = new Vector(direction);
 	}
-
-	//operation
-	public Color getIntensity(Point3D point){
-		return null;
-		};
 	
+	
+	// ***************** Getters/Setters ********************** //
 	@Override
-	public Color getIntensity() {
-		return null;
-	}
+	public Color getIntensity(Point3D point){
+		
+		
 	
-	public Vector getL(Point3D point){
-		return null;
-	};
-	
-	public Vector getDirection (){
-	 return this._direction;
-	}
-	
-	public void setDirection (Vector vec){
-		 this._direction = vec;
-		}
+		Color Ie = super.getIntensity(point);
+		
+		int r = Math.min((int)(_color.getRed() * Ie.getRed()), 255);
+		int g = Math.min((int)(_color.getGreen() * Ie.getGreen()), 255);
+		int b = Math.min((int)(_color.getBlue() * Ie.getBlue()), 255);
+		return new Color(r, g, b);
 
-	
+	}
 }
-
-

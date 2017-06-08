@@ -1,53 +1,51 @@
 package primitives;
 
-/**
- * Created by daniel on 3/22/2017.
- */
+
 public class Ray {
+	//POO =  Point Of Origin
+	private Point3D _POO;
+	
+	// Ray direction
+	private Vector _direction;
+	
+	
+	// ***************** Constructors ********************** //
+	
+	public Ray(){
+		
+		this(new Point3D(), new Vector());
+		_direction.normalize();
+	}
+	
+	public Ray(Ray ray){
+		/*_POO = new Point3D(ray._POO);
+		_direction = new Vector(ray._direction);*/
+		
+		this(ray._POO, ray._direction);		
+	}
+	
+	public Ray(Point3D poo, Vector direction){
+		_POO = new Point3D(poo);
+		
+		_direction = new Vector(direction);
+		_direction.normalize();
+		
+	}
+	// ***************** Getters/Setters ********************** //
+	
+	public void setPOO(Point3D _POO){
+		_POO.setPoint(_POO);
+	}
+	public void setDirection(Vector direction){
+		_direction.setHead(direction.getHead());
+	}
 
-    private Vector direction; //ray direction
-    private Point3D POO;  // point of origin
+	public Vector getDirection(){
+		_direction.normalize();
+		return new Vector(_direction);
+	}
+	public Point3D getPOO(){
+		return new Point3D(_POO);
+	}
 
-    //***************Constructors*****************//
-    public Ray(Vector _direction, Point3D _POO) {
-        direction = new Vector(_direction);
-        POO = new Point3D(_POO);
-        direction.normalize();
-    }
-
-    public Ray()
-    {
-        direction = new Vector();
-        POO = new Point3D();
-        direction.normalize();
-    }
-
-    public Ray(Ray ray) {
-        direction = new Vector(ray.direction);
-        POO = new Point3D(ray.POO);
-
-    }
-
-    //******************Getters and Setters*****************//
-    public Vector getDirection() {
-        return new Vector(direction);
-    }
-
-    public void setDirection(Vector _direction)
-    {
-        direction.set_head(_direction.get_head());
-        direction.normalize();
-    }
-
-    public Point3D getPOO() {
-        return new Point3D(POO);
-    }
-
-    public void setPOO(Point3D POO) {
-        this.POO.setP3(POO.getP3());
-        this.POO.setP1(POO.getP1());
-        this.POO.setP2(POO.getP2());
-    }
 }
-
-

@@ -1,48 +1,33 @@
 package Elements;
 
-
+import primitives.*;
 import java.awt.Color;
 
-import primitives.*;
+public class DirectionalLight extends Light	implements LightSource{
 
-// directional light is a light such as the sun with a constant intensity and a curtain  direction 
-
-public class DirectionalLight extends Light {
-
-	//the direction of the light 
-	private Vector direction;
+	private Vector _direction;
 	
-	//default cons 
-	public DirectionalLight()
-	{
-		this.direction=new Vector();
-		_color = new Color(255,255,255);
+	// ***************** Constructors ********************** //
+	public DirectionalLight(Color color, Vector direction){
+		super(color);
+		_direction = new Vector(direction);
 	}
 	
-	//full cons
-	public DirectionalLight(Color color, Vector direction){
-		this._color= new Color(color.getRGB());
-		this.direction=new Vector(direction);
+	
+	// ***************** Getters/Setters ********************** //
+	@Override
+	public Color getIntensity(Point3D point){
+		
+		return super.getIntensity();
+	}
+	public Vector getDirection() {
+		return new Vector(_direction);
+	}
+	public void setDirection(Vector direction){
+		_direction.setHead(direction.getHead());
 	}
 	@Override
-	public Color getIntensity() {
-		
-		return null;
-	}
-
-	public Vector getDirection() {
-		return direction;
-	}
-
-	public void setDirection(Vector direction) {
-		this.direction = new Vector(direction);
-	}
-	
 	public Vector getL(Point3D point){
-		//don't know what to do here? 		
-		return direction;
-	};
-	
-	
-
+		return new Vector(point);
+	}
 }
