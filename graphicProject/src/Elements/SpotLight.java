@@ -7,6 +7,7 @@ public class SpotLight extends PointLight {
 	private Vector _direction;
 	
 	// ***************** Constructor ********************** //
+	
 	public SpotLight(Color color, Point3D position, Vector direction,
 	double kc, double kl, double kq){
 		super(color, position, kc, kl, kq);
