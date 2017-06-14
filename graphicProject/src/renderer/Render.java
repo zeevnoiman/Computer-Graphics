@@ -171,15 +171,17 @@ public class Render	{
 		Color diffuseLight = new Color(0, 0, 0);
 		Color specularLight = new Color(0, 0, 0);
 		Iterator<LightSource> lights = _scene.getLightsIterator();
-		while (lights.hasNext()){
+		while (lights.hasNext()){   //phong function
 			LightSource light = lights.next();
 			diffuseLight = addColors(diffuseLight, 
 					calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point),
 												light.getL(point), light.getIntensity(point)));
 		
-			specularLight = addColors(specularLight, calcSpecularComp(geometry.getMaterial().getKs(),
-				new Vector(point, _scene.getCamera().getP0()),	geometry.getNormal(point),
-					light.getL(point), geometry.getShininess(),	light.getIntensity(point)));
+			specularLight = addColors(specularLight,
+					                  calcSpecularComp(geometry.getMaterial().getKs(),
+				                                       new Vector(point, _scene.getCamera().getP0()),
+				                                       geometry.getNormal(point),
+					                                   light.getL(point), geometry.getShininess(),	light.getIntensity(point)));
 		}
 		
 		return addColors(addColors(ambientLight, emissionLight), 

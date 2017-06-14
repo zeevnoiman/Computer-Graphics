@@ -2,7 +2,7 @@ package Elements;
 
 import primitives.*;
 import java.awt.Color;
-
+//test commit
 public class PointLight extends Light implements LightSource{
 	Point3D _position;
 	double _Kc, _Kl, _Kq;

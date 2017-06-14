@@ -43,13 +43,14 @@ public class EmmissionTest {
 		render.renderImage1();
 		render.writeToImage();
 		
+//---------------------------------------------------------------------//
 		
 		Scene scene1 = new Scene(new AmbientLight(255,255,255), 
     			new Color(0,0,0), 
     			new Camera(), 100);
-		 Sphere sphere = new Sphere(900, new Point3D(0.0, 0.0, -3000));
-		 sphere.setShininess(200);
-		 sphere.setEmmission(new Color(255, 255, 0));
+		 Sphere sphere = new Sphere(9000, new Point3D(0.0, 0.0, -6000));
+		 sphere.setShininess(20);
+		 sphere.setEmmission(new Color(255, 0, 0));
 		// sphere.setKt(1);
 	        
 		 Plane plane = new Plane(new Vector(0, 1, 0), new Point3D(0, -130, 0));
@@ -99,11 +100,12 @@ public class EmmissionTest {
 		
 		
 		//  /*
+	//------------------------------------------------------------------------------//
 		Scene scene3 = new Scene(new AmbientLight(255,255,255), 
 				new Color(0.3f,0.5f,0.74f), 
 				new Camera(), 152);
 
-		Sphere sphere3 = new Sphere(50, new Point3D(0.0, 0.0, -50));
+		Sphere sphere3 = new Sphere(900, new Point3D(0.0, 0.0, -1000));
 		
 		Triangle triangle13 = new Triangle(new Point3D( 150, 0, -50),
 				new Point3D(  0, 150, -50),
@@ -140,5 +142,19 @@ public class EmmissionTest {
 		render3.renderImage1();
 		render3.printGrid(50);
 		render3.writeToImage();
+		//---------------------------------------------------//
+		Scene scene4 = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 100);
+		ImageWriter imageWriter4 = new ImageWriter("PointLightTestmy4", 500, 500, 500, 500);
+		Sphere sph4 = new Sphere(400, new Point3D(0,0,-600));
+		sph4.setShininess(600);
+		sph4.setEmmission(new Color(17,15,116));
+		
+		PointLight pointLight4 = new PointLight(new Color(255,50,50), new Point3D(220,200,-900), 0.001, 0.001, 0.001);
+		scene4.addGeometry(sph4);
+		
+		scene4.addLight(pointLight4);
+		Render render4 = new Render(imageWriter4, scene4);
+		render4.renderImage1();
+		render4.writeToImage();
 	}
 }
