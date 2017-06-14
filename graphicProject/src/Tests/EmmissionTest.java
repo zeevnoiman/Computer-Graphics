@@ -14,36 +14,48 @@ public class EmmissionTest {
 
 	@Test
 	public void emmissionSemple() {
-		
 		Scene scene = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 100);
+		//Scene scene = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(new Point3D(5,5,5), new Vector(1,3,2), new Vector(1,5,2)), 100);
 		ImageWriter imageWriter = new ImageWriter("PointLightTest", 500, 500, 500, 500);
-		Sphere sph1 = new Sphere(400, new Point3D(0,0,-1000));
+		Sphere sph1 = new Sphere(400, new Point3D(100,50,-1000));
 		Sphere sph2 = new Sphere(300, new Point3D(500,-300,-700));
-		Sphere sph3 = new Sphere(200, new Point3D(0,-250,-500));
+		Sphere sph3 = new Sphere(200, new Point3D(0,-10,-100));
 		Triangle tri = new Triangle(new Point3D(400, 2400,-1200), new Point3D(1101,200,-1300), new Point3D(300,-300,-1101));
 		Triangle tri5 = new Triangle(new Point3D(-400, 2000,-1100), new Point3D(200,-100,-1200), new Point3D(-500,-700,-900));
+		Triangle tri3 = new Triangle(new Point3D(-700, 4000,-1500), new Point3D(200,-100,-1200), new Point3D(-500,-700,-900));
 		sph1.setShininess(35);
-		sph1.setEmmission(new Color(17,15,116));
-		sph2.setShininess(35);
-		sph2.setEmmission(new Color(17,15,116));
-		sph3.setShininess(35);
-		sph3.setEmmission(new Color(0,100,0));
+		sph1.setEmmission(new Color(10,15,250));
+		sph2.setShininess(20);
+		sph2.setEmmission(new Color(17,200,200));
+		sph3.setShininess(0);
+		sph3.setEmmission(new Color(100,20,56));
+		tri3.setShininess(200);
+		tri3.setEmmission(new Color(255,0,0));
 		tri.setShininess(10);
-		tri.setEmmission(new Color(30,144,255));
+		tri.setEmmission(new Color(30,12,255));
 		tri5.setShininess(10);
 		tri5.setEmmission(new Color(30,144,255));
-		PointLight pointLight = new PointLight(new Color(255,50,50), new Point3D(220,200,-20), 0.002, 0.002, 0.001);
+		PointLight pointLight = new PointLight(new Color(255,50,50),
+				              new Point3D(220,200,-20), 0.002, 0.002, 0.001);
 		scene.addGeometry(sph1);
 		scene.addGeometry(sph2);
 		scene.addGeometry(sph3);
 		scene.addGeometry(tri);
+		scene.addGeometry(tri3);
 		scene.addGeometry(tri5);
 		scene.addLight(pointLight);
+		
+		
 		Render render = new Render(imageWriter, scene);
 		render.renderImage1();
 		render.writeToImage();
 		
+<<<<<<< HEAD
 //---------------------------------------------------------------------//
+=======
+		//========================================================================================================//
+
+>>>>>>> d3afe5b53dceba645656727bd15500d140f292ac
 		
 		Scene scene1 = new Scene(new AmbientLight(255,255,255), 
     			new Color(0,0,0), 
@@ -94,16 +106,63 @@ public class EmmissionTest {
 		Render render1 = new Render(imageWriter1, scene1);
 
 		render1.renderImage1();
-		//render1.printGrid(50);
+		render1.printGrid(50);
 		render1.writeToImage();
+		
+		//========================================================================================================//
+
          // */
 		
+		Scene scene2 = new Scene(new AmbientLight(255,20,255), 
+				new Color(255,255,100), 
+				new Camera(), 200);
+
+		Sphere sphere2 = new Sphere(50, new Point3D(0.0, 0.0, -50));
+		
+		Triangle triangle21 = new Triangle(new Point3D( 150, 0, -50),
+				new Point3D(  0, 150, -50),
+				new Point3D( 150, 150, -50));
+
+		Triangle triangle22 = new Triangle(new Point3D( 150, 0, -50),
+				new Point3D(  0, -150, -50),
+				new Point3D( 150,-150, -50));
+
+		Triangle triangle23 = new Triangle(new Point3D(-150, 0, -50),
+				new Point3D(  0, 150, -50),
+				new Point3D(-150, 150, -50));
+
+		Triangle triangle24 = new Triangle(new Point3D(-150, 0, -50),
+				new Point3D(  0,  -150, -50),
+				new Point3D(-150, -150, -50));
+
+		sphere.setEmmission(new Color (0, 255, 255));
+		
+		triangle21.setEmmission(new Color (0, 255, 255));
+		triangle22.setEmmission(new Color (255, 0, 255));
+		triangle23.setEmmission(new Color (255, 255, 0));
+		triangle24.setEmmission(new Color (50, 100,100));
+             
+		scene2.addGeometry(sphere2);
+		scene2.addGeometry(triangle21);
+		scene2.addGeometry(triangle22);
+		scene2.addGeometry(triangle23);
+		scene2.addGeometry(triangle23);
+
+		ImageWriter imageWriter2 = new ImageWriter("MY test", 500, 500, 500, 500);
+
+		Render render2 = new Render(imageWriter2, scene2);
+
+		render2.renderImage1();
+		render2.printGrid(50);
+		render2.writeToImage();
+		
+		//========================================================================================================//
 		
 		//  /*
 	//------------------------------------------------------------------------------//
 		Scene scene3 = new Scene(new AmbientLight(255,255,255), 
-				new Color(0.3f,0.5f,0.74f), 
-				new Camera(), 152);
+				new Color(255,255,255), 
+				new Camera(), 200);
 
 		Sphere sphere3 = new Sphere(900, new Point3D(0.0, 0.0, -1000));
 		
@@ -111,7 +170,7 @@ public class EmmissionTest {
 				new Point3D(  0, 150, -50),
 				new Point3D( 150, 150, -50));
 
-		Triangle triangle23 = new Triangle(new Point3D( 150, 0, -50),
+		Triangle triangle32 = new Triangle(new Point3D( 150, 0, -50),
 				new Point3D(  0, -150, -50),
 				new Point3D( 150,-150, -50));
 
@@ -131,7 +190,7 @@ public class EmmissionTest {
 
 		scene3.addGeometry(sphere3);
 		scene3.addGeometry(triangle13);
-		scene3.addGeometry(triangle23);
+		scene3.addGeometry(triangle32);
 		scene3.addGeometry(triangle33);
 		scene3.addGeometry(triangle43);
 
@@ -142,6 +201,7 @@ public class EmmissionTest {
 		render3.renderImage1();
 		render3.printGrid(50);
 		render3.writeToImage();
+<<<<<<< HEAD
 		//---------------------------------------------------//
 		Scene scene4 = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 100);
 		ImageWriter imageWriter4 = new ImageWriter("PointLightTestmy4", 500, 500, 500, 500);
@@ -156,5 +216,9 @@ public class EmmissionTest {
 		Render render4 = new Render(imageWriter4, scene4);
 		render4.renderImage1();
 		render4.writeToImage();
+=======
+		
+		//========================================================================================================//
+>>>>>>> d3afe5b53dceba645656727bd15500d140f292ac
 	}
 }
