@@ -14,6 +14,7 @@ public class EmmissionTest {
 
 	@Test
 	public void emmissionSemple() {
+		/*
 		Scene scene = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 100);
 		//Scene scene = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(new Point3D(5,5,5), new Vector(1,3,2), new Vector(1,5,2)), 100);
 		ImageWriter imageWriter = new ImageWriter("PointLightTest", 500, 500, 500, 500);
@@ -50,12 +51,13 @@ public class EmmissionTest {
 		render.renderImage1();
 		render.writeToImage();
 		
-<<<<<<< HEAD
+*/
+		
+		
 //---------------------------------------------------------------------//
-=======
-		//========================================================================================================//
 
->>>>>>> d3afe5b53dceba645656727bd15500d140f292ac
+		//========================================================================================================//
+/*
 		
 		Scene scene1 = new Scene(new AmbientLight(255,255,255), 
     			new Color(0,0,0), 
@@ -108,11 +110,13 @@ public class EmmissionTest {
 		render1.renderImage1();
 		render1.printGrid(50);
 		render1.writeToImage();
-		
+	
+		*/
 		//========================================================================================================//
 
          // */
 		
+		/*
 		Scene scene2 = new Scene(new AmbientLight(255,20,255), 
 				new Color(255,255,100), 
 				new Camera(), 200);
@@ -156,10 +160,12 @@ public class EmmissionTest {
 		render2.printGrid(50);
 		render2.writeToImage();
 		
+		*/
 		//========================================================================================================//
 		
 		//  /*
 	//------------------------------------------------------------------------------//
+		/*
 		Scene scene3 = new Scene(new AmbientLight(255,255,255), 
 				new Color(255,255,255), 
 				new Camera(), 200);
@@ -201,7 +207,8 @@ public class EmmissionTest {
 		render3.renderImage1();
 		render3.printGrid(50);
 		render3.writeToImage();
-<<<<<<< HEAD
+*/
+		
 		//---------------------------------------------------//
 		Scene scene4 = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 100);
 		ImageWriter imageWriter4 = new ImageWriter("PointLightTestmy4", 500, 500, 500, 500);
@@ -216,9 +223,28 @@ public class EmmissionTest {
 		Render render4 = new Render(imageWriter4, scene4);
 		render4.renderImage1();
 		render4.writeToImage();
-=======
+
 		
 		//========================================================================================================//
->>>>>>> d3afe5b53dceba645656727bd15500d140f292ac
+
+		Scene scene5 = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 100);
+		ImageWriter imageWriter5 = new ImageWriter("SpotLightNew", 500, 500, 500, 500);
+		
+		Plane myPlane = new Plane(new Vector(0, 0, -1), new Point3D(0, 0, -700));
+		myPlane.setEmmission(new Color(0,0,50));
+		scene5.addGeometry(myPlane);
+		
+		PointLight spotLight1 = new PointLight(new Color(200, 0, 0), new Point3D(600, 0, -200), 0.002, 0.002, 0.002);
+		PointLight spotLight2 = new PointLight(new Color(0, 200, 0), new Point3D(-50, 0, -200), 0.002, 0.002, 0.002);
+		PointLight spotLight3 = new PointLight(new Color(200, 200, 0), new Point3D(-750, 0, -200), 0.002, 0.002, 0.002);
+		scene5.addLight(spotLight1);
+		scene5.addLight(spotLight2);
+		scene5.addLight(spotLight3);
+		Render render5 = new Render(imageWriter5, scene5);
+		render5.renderImage1();
+		render5.writeToImage();
+		
+	
+		
 	}
 }
