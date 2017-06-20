@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import Elements.PointLight;
 import Elements.SpotLight;
+import Geometries.Plane;
 import Geometries.Sphere;
 import Geometries.Triangle;
 import primitives.Point3D;
@@ -16,6 +17,7 @@ import scene.Scene;
 
 public class Testim {
 
+	/*
 	
 	@Test 
 	public void emmissionTest(){
@@ -228,5 +230,103 @@ public class Testim {
 	}
 		
 	*/
+	
+	@Test
+	public void HouseTest(){
+		
+		Scene scene = new Scene();
+		scene.setBackground(new Color(100,100,220));
+		
+		
+		Sphere sphere = new Sphere(500, new Point3D(-1501,2501, -2100));
+		sphere.setEmmission(new Color(230, 213, 49));
+		
+		
+		
+		Triangle triangle = new Triangle(new Point3D(  0,  0, -900),
+				 						 new Point3D( 650, 0, -900),
+				 						 new Point3D(  650, 651, -900));
+
+		Triangle triangle2 = new Triangle(new Point3D(  0,  0, -900),
+				 						 new Point3D( 0, 650, -900),
+				 						 new Point3D( 650, 651, -900));
+		
+		Triangle triangle3 = new Triangle(new Point3D(  0,  650, -900),
+				 							new Point3D( 650, 651, -900),
+				 							new Point3D( 325, 1001, -900));
+		
+		Triangle triangle4 = new Triangle(new Point3D( 251, 0, -900),
+										new Point3D( 401, 0, -900),
+										new Point3D( 401, 200, -900));
+		
+		Triangle triangle5 = new Triangle(new Point3D(  251, 0, -900),
+										new Point3D( 251, 200, -900),
+										new Point3D( 401, 200, -900));
+		/*
+		Triangle triangle6 = new Triangle(new Point3D( 650, 0, -900),
+											new Point3D( 650, 651, -900),
+											new Point3D( 901, 650, -900));
+		
+		Triangle triangle7 = new Triangle(new Point3D( 651, 651, -900),
+				new Point3D( 901, 651, -900),
+				new Point3D( 901, 1300, -900));
+		*/
+		
+		Triangle triangle66 = new Triangle(new Point3D( 651, 0, -900),
+				new Point3D( 651, 651, -900),
+				new Point3D( 1801, 800, -1200));
+		
+		
+		
+		Triangle triangle77 = new Triangle(new Point3D( 651, 0, -900),
+				new Point3D( 1801, 800, -1200),
+				new Point3D( 1801,0, -1200));
+		
+		Triangle triangle8 = new Triangle(new Point3D(651, 651, -900),
+				 new Point3D( 325, 1000, -900),
+				 new Point3D(  1801, 800, -1200));
+		
+		
+		
+		Plane plane = new Plane(new Vector(0,1,1),new Point3D(0,0,-900));
+		
+		
+		triangle77.setEmmission(new Color(100, 0, 00));
+		triangle66.setEmmission(new Color(100, 0, 00));
+		triangle.setEmmission(new Color(0, 0, 100));
+		triangle2.setEmmission(new Color(100, 0,0));
+		triangle3.setEmmission(new Color(0, 100, 0));
+		triangle4.setEmmission(new Color(0, 0, 0));
+		triangle5.setEmmission(new Color(0, 0, 0));
+		triangle8.setEmmission(new Color(0, 100,0));
+		plane.setEmmission(new Color(0, 200, 20));
+		
+		
+		//scene.addGeometry(triangle7);//converting to real 3d...
+		//scene.addGeometry(triangle6);
+		scene.addGeometry(triangle8);
+		scene.addGeometry(triangle77);
+		scene.addGeometry(triangle66);
+		scene.addGeometry(triangle5);
+		scene.addGeometry(triangle4);
+		
+		scene.addGeometry(triangle);
+		scene.addGeometry(triangle2);
+		scene.addGeometry(triangle3);
+		scene.addGeometry(plane);
+		scene.addGeometry(sphere);
+		
+		
+		scene.addLight(new PointLight(new Color(255, 100, 100), new Point3D(2000, 2000, -100), 
+				   0.00005, 0.000001, 0.0000005));
+	
+		
+		ImageWriter imageWriter = new ImageWriter("House test 1", 500, 500, 500, 500);
+		
+		Render render = new Render(imageWriter, scene);
+		
+		render.renderImage1();
+		render.writeToImage();
 
 }
+	}

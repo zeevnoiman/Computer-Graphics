@@ -49,11 +49,12 @@ public class SpotLight extends PointLight {
 		double d = point.distance(_position);
 		dVector.normalize();
 		lVector.normalize();
+		
 		double attenuation = Math.abs(dVector.dotProduct(lVector));//dotProduct  between L and D
 		if (attenuation < 0) {
 			return new Color(0, 0, 0);
 		}
-		attenuation /= (_Kc + _Kl * d + _Kq * Math.pow(d, 2)); // equal to => Kc * Ki*d * Kq*d^2
+		attenuation /= (_Kc + _Kl * d + _Kq * Math.pow(d, 2)); 
 
 		int r = Math.min((int)(_color.getRed() * attenuation), 255);
 		int g = Math.min((int)(_color.getGreen() * attenuation), 255);
