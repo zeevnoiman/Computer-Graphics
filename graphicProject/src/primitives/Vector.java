@@ -102,7 +102,9 @@ public class Vector implements Comparable<Vector> {
 	
 	public void normalize() {	
 		if (length() == 0) {
-			throw new ArithmeticException("Can't devide in zero");
+			
+			
+			throw new ArithmeticException("Can't devide in zero - i'm vector class");
 		}
 		double len = length();
 		_head._x.setCoordinate(getX() / len);

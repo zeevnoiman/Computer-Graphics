@@ -37,12 +37,14 @@ public class Camera {
 	}
 	public void  set_vUp(Vector vUp){
 		_vUp.setHead(vUp.getHead());
+		_vUp.normalize();
 	}
 	public Vector get_vTo(){
 		return new Vector(_vTo);
 	}
 	public void set_vTo(Vector vTo){
 		_vTo.setHead(vTo.getHead());
+		_vTo.normalize();
 	}
 	public Vector get_vRight(){
 		return new Vector(_vRight);
@@ -69,8 +71,8 @@ public class Camera {
 			 double screenHeight){
 			
 				Point3D Pc = pcCalc(screenDist);
-				Vector vX = new Vector(pixelCalc(Nx, x, screenWidth),0,0);
-				Vector vY = new Vector(0,pixelCalc(Ny, y, screenHeight),0);
+				Vector vX = pixelCalc(Nx, x, screenWidth, _vRight);
+				Vector vY = pixelCalc(Ny, y, screenHeight, _vUp);
 				
 				vX.subtract(vY);
 				Pc.add(vX);			// P = Pc
@@ -79,12 +81,18 @@ public class Camera {
 				
 			}
 
-			private double pixelCalc(int N, double cPoint, double sLengh) {
-				cPoint -= N/2.0;					// center point of the pixel = end point of the pixel - (#pixel / 2)
-				double R = sLengh / N;				// R = screen length / NO' of pixels => W/#pixel_x for example 
-				return  (R * cPoint) + (R / 2.0);	// (calculate the length from Pc to P on the screen) + of the length of the pixel => bring P to the middle of the correct pixel 	
-			}
-			private Point3D pcCalc(double screenDist) {
+	private Vector pixelCalc(int N, double ePoint, double sLengh, Vector vec) {
+		Vector vector = new Vector(vec);
+		ePoint -= N/2.0;
+		double R = sLengh / N;
+		R = (R * ePoint) + (R / 2.0);
+		vector.scale(R);
+		return new Vector(vector);
+	}
+	
+	
+	
+	private Point3D pcCalc(double screenDist) {
 				Point3D p0 = new Point3D(_P0);
 				//Vector vTo = new Vector(_vTo); 
 				//vTo.scale(screenDist);

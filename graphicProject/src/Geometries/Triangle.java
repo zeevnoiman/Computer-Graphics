@@ -63,6 +63,7 @@ public class Triangle extends Geometry implements FlatGeometry {
 
 		Vector normal = AB.crossProduct(AC);
 		normal.normalize();
+		normal.scale(-1);
 		return normal;
 	}
 
