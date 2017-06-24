@@ -51,9 +51,8 @@ public class EmmissionTest {
 		render.renderImage1();
 		render.writeToImage();
 		
-*/
-		
-		
+	
+		*/
 //---------------------------------------------------------------------//
 
 		//========================================================================================================//
@@ -210,41 +209,64 @@ public class EmmissionTest {
 */
 		
 		//---------------------------------------------------//
-		Scene scene4 = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 100);
-		ImageWriter imageWriter4 = new ImageWriter("PointLightTestmy4", 500, 500, 500, 500);
-		Sphere sph4 = new Sphere(400, new Point3D(0,0,-600));
+		Scene scene4 = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 1000);
+		ImageWriter imageWriter4 = new ImageWriter("PointLightTestmy42", 500, 500, 500, 500);
+		
+		Sphere sph4 = new Sphere(400, new Point3D(0,0,-2000));
 		sph4.setShininess(600);
-		sph4.setEmmission(new Color(17,15,116));
+		sph4.setEmmission(new Color(150,100,0));
 		
-		PointLight pointLight4 = new PointLight(new Color(255,50,50), new Point3D(220,200,-900), 0.001, 0.001, 0.001);
-		scene4.addGeometry(sph4);
+		PointLight pointLight4 = new PointLight(new Color(0,0,128), new Point3D(2500,-2000,-1500), 0.0002, 0.002, 0.0001);
 		
+		scene4.addGeometry(sph4);		
 		scene4.addLight(pointLight4);
 		Render render4 = new Render(imageWriter4, scene4);
 		render4.renderImage1();
 		render4.writeToImage();
 
 		
+		
+		
 		//========================================================================================================//
 
-		Scene scene5 = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 100);
-		ImageWriter imageWriter5 = new ImageWriter("SpotLightNew", 500, 500, 500, 500);
+
+			
+
+		Scene scene = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 200);
+       	Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000));
+		sphere.setShininess(20);
+		sphere.setEmmission(new Color(0, 0, 100));
 		
-		Plane myPlane = new Plane(new Vector(0, 0, -1), new Point3D(0, 0, -700));
-		myPlane.setEmmission(new Color(0,0,50));
-		scene5.addGeometry(myPlane);
+		scene.addGeometry(sphere);
 		
-		PointLight spotLight1 = new PointLight(new Color(200, 0, 0), new Point3D(600, 0, -200), 0.002, 0.002, 0.002);
-		PointLight spotLight2 = new PointLight(new Color(0, 200, 0), new Point3D(-50, 0, -200), 0.002, 0.002, 0.002);
-		PointLight spotLight3 = new PointLight(new Color(200, 200, 0), new Point3D(-750, 0, -200), 0.002, 0.002, 0.002);
-		scene5.addLight(spotLight1);
-		scene5.addLight(spotLight2);
-		scene5.addLight(spotLight3);
-		Render render5 = new Render(imageWriter5, scene5);
-		render5.renderImage1();
-		render5.writeToImage();
+		Triangle triangle1 = new Triangle(new Point3D(  180,  -150, -700),
+							 new Point3D( 220, 200, -500),
+				 						 new Point3D(  450, -170, -700));
+
+		Triangle triangle2 = new Triangle(new Point3D(  350,  350, -2000),
+				  						  new Point3D( -3490,  350, -1000),
+				  						  new Point3D( -340, -350, -1000));
+		triangle1.setEmmission(new Color(70, 50, 36));
+		scene.addGeometry(triangle1);
+		//scene.addGeometry(triangle2);
+		
+		scene.addLight(new SpotLight(new Color(55, 0, 76), new Point3D(200, 200, -100), 
+				   new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
+	
+		
+			
+			ImageWriter imageWriter = new ImageWriter("Shadow test", 500, 500, 500, 500);
+			
+			Render render = new Render(imageWriter, scene);
+			
+			render.renderImage1();
+			render.writeToImage();
+			
 		
 	
+
+
+
 		
 	}
 }

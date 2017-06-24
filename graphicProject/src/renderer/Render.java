@@ -171,23 +171,47 @@ public class Render	{
 		Color diffuseLight = new Color(0, 0, 0);
 		Color specularLight = new Color(0, 0, 0);
 		Iterator<LightSource> lights = _scene.getLightsIterator();
-		while (lights.hasNext()){   //phong function
+		while (lights.hasNext())
+		{   
 			LightSource light = lights.next();
+		    if(!occluded(light, point, geometry)){
 			diffuseLight = addColors(diffuseLight, 
-					calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point),
-												light.getL(point), light.getIntensity(point)));
+										calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point),
+														light.getL(point), light.getIntensity(point)));
 		
 			specularLight = addColors(specularLight,
-					                  calcSpecularComp(geometry.getMaterial().getKs(),
+										calcSpecularComp(geometry.getMaterial().getKs(),
 				                                       new Vector(point, _scene.getCamera().getP0()),
 				                                       geometry.getNormal(point),
 					                                   light.getL(point), geometry.getShininess(),	light.getIntensity(point)));
-		}
+			
+			
+		    }
+		  }
 		
 		return addColors(addColors(ambientLight, emissionLight), 
 						 addColors(diffuseLight, specularLight)); 
 	}
 	
+	private boolean occluded(LightSource light, Point3D point, Geometry geometry) {		
+		Vector lightDirection = light.getL(point);
+		lightDirection.scale(-1);
+		
+		Point3D geometryPoint = new Point3D(point);
+		Vector epsVector = new Vector(geometry.getNormal(point));
+		epsVector.scale(2);
+		
+		geometryPoint.add(epsVector);
+		Ray lightRay = new Ray(geometryPoint, lightDirection);
+		
+		Map<Geometry, List<Point3D>> intersectionsPoints = getSceneRayIntersections1(lightRay);
+		
+		if(geometry instanceof FlatGeometry){
+			intersectionsPoints.remove(geometry);
+		}
+		return !intersectionsPoints.isEmpty();
+	}
+
 	private Color calcDiffusiveComp(double kd, Vector normal, Vector l,	Color lightIntensity){
 		
 		

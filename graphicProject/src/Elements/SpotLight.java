@@ -20,8 +20,13 @@ public class SpotLight extends PointLight {
 	public Color getIntensity(Point3D point){
 		
 		Vector L = new Vector(point, _position);		
+		L.normalize();
+		_direction.normalize();
 		double DversusL = _direction.dotProduct(L);
-		
+		//DversusL = Math.abs(DversusL);
+		if(DversusL < 0){
+			DversusL = 0;
+		}
 		int r = Math.min((int)(DversusL * _color.getRed()), 255);
 		int g = Math.min((int)(DversusL * _color.getGreen()), 255);
 		int b = Math.min((int)(DversusL * _color.getBlue()), 255);
