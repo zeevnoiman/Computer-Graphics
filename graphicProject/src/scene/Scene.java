@@ -28,6 +28,7 @@ public class Scene
 		_ambientLight = new AmbientLight();
 		_geometries = new ArrayList<Geometry>();
 	}
+	
 	public Scene (Scene scene){
 		this(scene._ambientLight, scene._background,
 				scene._camera, scene._screenDistance);

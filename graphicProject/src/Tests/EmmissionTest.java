@@ -229,6 +229,7 @@ public class EmmissionTest {
 		
 		//========================================================================================================//
 
+<<<<<<< HEAD
 
 			
 
@@ -262,6 +263,32 @@ public class EmmissionTest {
 			render.renderImage1();
 			render.writeToImage();
 			
+=======
+		Scene scene5 = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 180);
+		ImageWriter imageWriter5 = new ImageWriter("SpotLightNew1", 500, 500, 500, 500);
+		
+		Plane myPlane = new Plane(new Vector(0, 0, -1), new Point3D(0, 0, -700));
+		
+		Triangle triangle43 = new Triangle(new Point3D(1515, 0, -1500),
+				new Point3D(  1500,  -150, -1150),
+				new Point3D(-1150, -150, -150));
+		
+		triangle43.setEmmission(new Color (255, 255, 0));
+		myPlane.setEmmission(new Color(10,0,150));
+		scene5.addGeometry(myPlane);
+		scene5.addGeometry(triangle43);
+		
+		PointLight spotLight1 = new PointLight(new Color(200, 0, 0), new Point3D(600, 0, -200), 0.002, 0.002, 0.002);
+		PointLight spotLight2 = new PointLight(new Color(0, 200, 0), new Point3D(-50, 0, -200), 0.002, 0.002, 0.002);
+		PointLight spotLight3 = new PointLight(new Color(200, 200, 0), new Point3D(-750, 0, -200), 0.002, 0.002, 0.002);
+		scene5.addLight(spotLight1);
+		scene5.addLight(spotLight2);
+		scene5.addLight(spotLight3);
+		
+		Render render5 = new Render(imageWriter5, scene5);
+		render5.renderImage1();
+		render5.writeToImage();
+>>>>>>> 8e4289348374df1ea6dc6cb786555ddb2392d125
 		
 	
 

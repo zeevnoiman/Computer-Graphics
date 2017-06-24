@@ -22,7 +22,7 @@ public class MyTest {
 		
 	
 			
-		Color color = new Color(255,0,0);
+		Color color = new Color(70);
 		Point3D point3d = new Point3D(200,200,-20);
 		Vector vector = new Vector(200,-200,-1280);
 		
@@ -34,7 +34,7 @@ public class MyTest {
 		
 		Scene scene2 = new Scene(new AmbientLight(255,255,255), 
 				new Color(50,0,0), 
-				new Camera(), 100);
+				new Camera(), 50);
 
 		Sphere sphere2 = new Sphere(200, new Point3D(800,-800,-600));
 		
@@ -42,30 +42,30 @@ public class MyTest {
 				new Point3D(400,-100,-1200),
 				new Point3D(200, -50, -15));
 
-		Triangle triangle22 = new Triangle(new Point3D( 350, 0, -50),
-				new Point3D(  0, -150, -50),
-				new Point3D( 150,-150, -50));
+		Triangle triangle22 = new Triangle(new Point3D( 1000, 1000, -1000),
+				new Point3D(5000,500, -1000),
+				new Point3D(-800,-801,-600));
 
-		Triangle triangle23 = new Triangle(new Point3D(-600, 3000,-1500),
-				new Point3D(400,-100,-1200), 
+		Triangle triangle23 = new Triangle(new Point3D(-600, 3000,-900),
+				new Point3D(4000,-1000,-1200), 
 				new Point3D(-800,-801,-600));
 				//new Point3D(-500,-700,-900));
 
-		Triangle triangle24 = new Triangle(new Point3D(-600, 3000,-1500),
-				new Point3D(400,-100,-1200),
-				new Point3D(200, -150, -15));
+		Triangle triangle24 = new Triangle(new Point3D(-6000, 3000,-1500),
+				new Point3D(4000,-1000,-1200),
+				new Point3D(200, -150, -150));
 
 		sphere2.setEmmission(new Color (10,15,250));
 		
-		triangle21.setEmmission(new Color (70, 220, 200));
-		triangle22.setEmmission(new Color (255, 0, 255));
-		triangle23.setEmmission(new Color (255, 255, 0));
-		triangle24.setEmmission(new Color (50, 100,100));
+		triangle21.setEmmission(new Color (0, 0, 255));
+		triangle22.setEmmission(new Color (255, 0, 0));
+		triangle23.setEmmission(new Color (0, 255, 0));
+		triangle24.setEmmission(new Color (0, 255,0));
 		
-		triangle21.setShininess(10);
-		triangle22.setShininess(10);
-		triangle23.setShininess(10);
-		triangle24.setShininess(10);
+		triangle21.setShininess(100);
+		triangle22.setShininess(50);
+		triangle23.setShininess(100);
+		triangle24.setShininess(5);
 		
 		
 		
@@ -75,7 +75,7 @@ public class MyTest {
 		plane2.setEmmission(new Color(0, 10, 0));
              
 		
-		PointLight pointLight2 =  new PointLight(new Color(200,50,50),
+		PointLight pointLight2 =  new PointLight(new Color(255),
 	              new Point3D(220,200,-20), 0.001, 0.001, 0.011);
 		
 		SpotLight spotLight2 = new SpotLight(color, point3d, vector, 0.01, 0.01, 0.02);
@@ -89,7 +89,7 @@ public class MyTest {
 		scene2.addGeometry(sphere2);
 		
 		scene2.addGeometry(triangle21);
-		//scene2.addGeometry(triangle22);
+		scene2.addGeometry(triangle22);
 		scene2.addGeometry(triangle23);
 		scene2.addGeometry(triangle24);
 		//scene2.addGeometry(plane2);
@@ -98,7 +98,7 @@ public class MyTest {
 		 
 		 
 
-		ImageWriter imageWriter2 = new ImageWriter("MY test2", 500, 500, 500, 500);
+		ImageWriter imageWriter2 = new ImageWriter("MY test3", 500, 500, 500, 500);
 
 		Render render2 = new Render(imageWriter2, scene2);
 

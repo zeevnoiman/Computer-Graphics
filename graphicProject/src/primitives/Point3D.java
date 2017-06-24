@@ -55,7 +55,7 @@ public class Point3D extends Point2D {
 			}
 			else return 1;
 		}
-		throw new IllegalAccessError("Try Again");  
+		throw new IllegalAccessError("problem - point 3d");  
 	}
 	
 	@Override

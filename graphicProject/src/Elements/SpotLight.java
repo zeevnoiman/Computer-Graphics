@@ -16,12 +16,19 @@ public class SpotLight extends PointLight {
 	
 	
 	// ***************** Getters/Setters ********************** //
+
+	/*
 	@Override
 	public Color getIntensity(Point3D point){
 		
+<<<<<<< HEAD
 		Vector L = new Vector(point, _position);		
 		L.normalize();
 		_direction.normalize();
+=======
+		Vector L = new Vector(point, _position);
+		
+>>>>>>> 8e4289348374df1ea6dc6cb786555ddb2392d125
 		double DversusL = _direction.dotProduct(L);
 		//DversusL = Math.abs(DversusL);
 		if(DversusL < 0){
@@ -41,4 +48,28 @@ public class SpotLight extends PointLight {
 		return new Color(r1, g1, b1);
 
 	}
+	*/
+	
+	@Override
+	public Color getIntensity(Point3D point){
+		
+		Vector dVector = new Vector(_direction);
+		Vector lVector = getL(point);//The point of impact on geometry
+		double d = point.distance(_position);
+		dVector.normalize();
+		lVector.normalize();
+		
+		double attenuation = Math.abs(dVector.dotProduct(lVector));//dotProduct  between L and D
+		if (attenuation < 0) {
+			return new Color(0, 0, 0);
+		}
+		attenuation /= (_Kc + _Kl * d + _Kq * Math.pow(d, 2)); 
+
+		int r = Math.min((int)(_color.getRed() * attenuation), 255);
+		int g = Math.min((int)(_color.getGreen() * attenuation), 255);
+		int b = Math.min((int)(_color.getBlue() * attenuation), 255);
+		return new Color(r, g, b);
+
+	}
+	
 }
